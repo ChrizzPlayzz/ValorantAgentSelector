@@ -29,120 +29,241 @@ namespace RandomValorantAgent
     {
         static void Main(string[] args)
         {
+            Console.Write("Choose your language (EN/DE): ");
+            string language = Console.ReadLine();
+            language = language.ToUpper();
+            Console.Clear();
+
             List<Agent> controllers, initiators, duelists, sentinels, allAgents;
             LoadAgentsFromFile(out controllers, out initiators, out duelists, out sentinels, out allAgents);
 
             while (true)
             {
-                OverlayEN();
-
-                string userinp = Console.ReadLine();
-
-                if (userinp == "1")
+                if (language == "EN")
                 {
-                    Console.WriteLine();
-                    Console.Write("Which role? ([C]ontroller, [I]nitiator, [D]uelist, [S]entinel): ");
-                    string userinput = Console.ReadLine();
-                    userinput = userinput.ToLower();
+                    OverlayEN();
 
-                    if (userinput == "controller" || userinput == "c")
+                    string userinp = Console.ReadLine();
+
+                    if (userinp == "1")
                     {
-                        Random r = new Random();
-
                         Console.WriteLine();
-                        Console.WriteLine("Your random " + controllers[r.Next(0, controllers.Count)].Rolle + " is: " + controllers[r.Next(0, controllers.Count)].Name);
+                        Console.Write("Which role? ([C]ontroller, [I]nitiator, [D]uelist, [S]entinel): ");
+                        string userinput = Console.ReadLine();
+                        userinput = userinput.ToLower();
+
+                        if (userinput == "controller" || userinput == "c")
+                        {
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Your random " + controllers[r.Next(0, controllers.Count)].Rolle + " is: " + controllers[r.Next(0, controllers.Count)].Name);
+                        }
+                        else if (userinput == "initiator" || userinput == "i")
+                        {
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Your random " + initiators[r.Next(0, controllers.Count)].Rolle + " is: " + initiators[r.Next(0, initiators.Count)].Name);
+                        }
+                        else if (userinput == "duelist" || userinput == "d")
+                        {
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Your random " + duelists[r.Next(0, controllers.Count)].Rolle + "  is: " + duelists[r.Next(0, duelists.Count)].Name);
+                        }
+                        else if (userinput == "sentinel" || userinput == "s")
+                        {
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Your random " + controllers[r.Next(0, controllers.Count)].Rolle + " is: " + sentinels[r.Next(0, sentinels.Count)].Name);
+                        }
                     }
-                    else if (userinput == "initiator" || userinput == "i")
+                    else if (userinp == "2")
                     {
                         Random r = new Random();
-
                         Console.WriteLine();
-                        Console.WriteLine("Your random " + initiators[r.Next(0, controllers.Count)].Rolle + " is: " + initiators[r.Next(0, initiators.Count)].Name);
+                        Console.WriteLine("Your random Agent is: " + allAgents[r.Next(0, allAgents.Count)].Name);
                     }
-                    else if (userinput == "duelist" || userinput == "d")
+                    else if (userinp == "3")
                     {
-                        Random r = new Random();
-
                         Console.WriteLine();
-                        Console.WriteLine("Your random " + duelists[r.Next(0, controllers.Count)].Rolle + "  is: " + duelists[r.Next(0, duelists.Count)].Name);
-                    }
-                    else if (userinput == "sentinel" || userinput == "s")
-                    {
-                        Random r = new Random();
 
+                        Console.Write("Controllers: \t");
+
+                        foreach (var agent in controllers)
+                        {
+                            if (agent == controllers[controllers.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
+                        }
                         Console.WriteLine();
-                        Console.WriteLine("Your random " + controllers[r.Next(0, controllers.Count)].Rolle + " is: " + sentinels[r.Next(0, sentinels.Count)].Name);
+
+                        Console.Write("Initiators: \t");
+
+                        foreach (var agent in initiators)
+                        {
+                            if (agent == initiators[initiators.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
+                        }
+                        Console.WriteLine();
+
+                        Console.Write("Duelists: \t");
+
+                        foreach (var agent in duelists)
+                        {
+                            if (agent == duelists[duelists.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
+                        }
+                        Console.WriteLine();
+
+                        Console.Write("Sentinels: \t");
+
+                        foreach (var agent in sentinels)
+                        {
+                            if (agent == sentinels[sentinels.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
+                        }
+                        Console.WriteLine();
                     }
                 }
-                else if (userinp == "2")
+                else if (language == "DE")
                 {
-                    Random r = new Random();
-                    Console.WriteLine();
-                    Console.WriteLine("Your random Agent is: " + allAgents[r.Next(0, allAgents.Count)].Name);
-                }
-                else if (userinp == "3")
-                {
-                    Console.WriteLine();
+                    OverlayDE();
 
-                    Console.Write("Controllers: \t");
+                    string userinp = Console.ReadLine();
 
-                    foreach (var agent in controllers)
+                    if (userinp == "1")
                     {
-                        if (agent == controllers[controllers.Count - 1])
+                        Console.WriteLine();
+                        Console.Write("Welche Rolle? ([C]ontroller, [I]nitiator, [D]uelist, [S]entinel): ");
+                        string userinput = Console.ReadLine();
+                        userinput = userinput.ToLower();
+
+                        if (userinput == "controller" || userinput == "c")
                         {
-                            Console.Write(agent.Name);
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Dein zufälliger " + controllers[r.Next(0, controllers.Count)].Rolle + " ist: " + controllers[r.Next(0, controllers.Count)].Name);
                         }
-                        else
+                        else if (userinput == "initiator" || userinput == "i")
                         {
-                            Console.Write(agent.Name + ", ");
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Dein zufälliger " + initiators[r.Next(0, controllers.Count)].Rolle + " ist: " + initiators[r.Next(0, initiators.Count)].Name);
+                        }
+                        else if (userinput == "duelist" || userinput == "d")
+                        {
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Dein zufälliger " + duelists[r.Next(0, controllers.Count)].Rolle + "  ist: " + duelists[r.Next(0, duelists.Count)].Name);
+                        }
+                        else if (userinput == "sentinel" || userinput == "s")
+                        {
+                            Random r = new Random();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Dein zufälliger " + controllers[r.Next(0, controllers.Count)].Rolle + " ist: " + sentinels[r.Next(0, sentinels.Count)].Name);
                         }
                     }
-                    Console.WriteLine();
-
-                    Console.Write("Initiators: \t");
-
-                    foreach (var agent in initiators)
+                    else if (userinp == "2")
                     {
-                        if (agent == initiators[initiators.Count - 1])
-                        {
-                            Console.Write(agent.Name);
-                        }
-                        else
-                        {
-                            Console.Write(agent.Name + ", ");
-                        }
+                        Random r = new Random();
+                        Console.WriteLine();
+                        Console.WriteLine("Dein zufälliger Agent ist: " + allAgents[r.Next(0, allAgents.Count)].Name);
                     }
-                    Console.WriteLine();
-
-                    Console.Write("Duelists: \t");
-
-                    foreach (var agent in duelists)
+                    else if (userinp == "3")
                     {
-                        if (agent == duelists[duelists.Count - 1])
-                        {
-                            Console.Write(agent.Name);
-                        }
-                        else
-                        {
-                            Console.Write(agent.Name + ", ");
-                        }
-                    }
-                    Console.WriteLine();
+                        Console.WriteLine();
 
-                    Console.Write("Sentinels: \t");
+                        Console.Write("Controllers: \t");
 
-                    foreach (var agent in sentinels)
-                    {
-                        if (agent == sentinels[sentinels.Count - 1])
+                        foreach (var agent in controllers)
                         {
-                            Console.Write(agent.Name);
+                            if (agent == controllers[controllers.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
                         }
-                        else
+                        Console.WriteLine();
+
+                        Console.Write("Initiators: \t");
+
+                        foreach (var agent in initiators)
                         {
-                            Console.Write(agent.Name + ", ");
+                            if (agent == initiators[initiators.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
                         }
+                        Console.WriteLine();
+
+                        Console.Write("Duelists: \t");
+
+                        foreach (var agent in duelists)
+                        {
+                            if (agent == duelists[duelists.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
+                        }
+                        Console.WriteLine();
+
+                        Console.Write("Sentinels: \t");
+
+                        foreach (var agent in sentinels)
+                        {
+                            if (agent == sentinels[sentinels.Count - 1])
+                            {
+                                Console.Write(agent.Name);
+                            }
+                            else
+                            {
+                                Console.Write(agent.Name + ", ");
+                            }
+                        }
+                        Console.WriteLine();
                     }
-                    Console.WriteLine();
                 }
                 Console.ReadLine();
                 Console.Clear();
@@ -220,6 +341,18 @@ namespace RandomValorantAgent
             Console.WriteLine("--------------------------------------------");
             Console.Write("Please select one \t\t [_]");
             Console.SetCursorPosition(34, 7);
+        }
+        private static void OverlayDE()
+        {
+            Console.WriteLine();
+            Console.WriteLine("\t---RANDOM AGENT SELECTOR---");
+            Console.WriteLine();
+            Console.WriteLine("Random Agent nach Rolle auswählen\t [1]");
+            Console.WriteLine("Full Random Agent auswählen\t\t [2]");
+            Console.WriteLine("Alle Agents anzeigen \t\t\t [3]");
+            Console.WriteLine("--------------------------------------------");
+            Console.Write("Deine Auswahl \t\t\t\t [_]");
+            Console.SetCursorPosition(42, 7);
         }
     }
 

@@ -1,0 +1,26 @@
+Controller Astra
+Controller Brimstone
+Controller Harbor
+Controller Omen
+Controller Viper
+
+Initiator Breach
+Initiator Fade
+Initiator Gekko
+Initiator KAY/O
+Initiator Skye
+Initiator Sova
+
+Duelist Iso
+Duelist Jett
+Duelist Neon
+Duelist Phoenix
+Duelist Raze
+Duelist Reyna
+Duelist Yoru
+
+Sentinel Chamber
+Sentinel Cypher
+Sentinel Deadlock
+Sentinel Killjoy
+Sentinel Sage

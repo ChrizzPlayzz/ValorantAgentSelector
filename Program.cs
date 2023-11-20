@@ -540,12 +540,12 @@ namespace RandomValorantAgent
                 }
             }
 
-            if(rolle == Rollen.Sentinel)
+            if (rolle == Rollen.Sentinel)
             {
                 sentinels.Add(new Agent(rolle, name));
                 allAgents.Add(new Agent(rolle, name));
             }
-            else if(rolle == Rollen.Controller)
+            else if (rolle == Rollen.Controller)
             {
                 controllers.Add(new Agent(rolle, name));
                 allAgents.Add(new Agent(rolle, name));

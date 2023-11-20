@@ -14,7 +14,8 @@ namespace RandomValorantAgent
         Controller,
         Sentinel
     }
-    public class Agent
+
+    public class Agent : IComparable<Agent>
     {
         public Rollen Rolle { get; set; }
         public string Name { get; set; }
@@ -24,9 +25,18 @@ namespace RandomValorantAgent
             Rolle = rolle;
             Name = name;
         }
+
+        public int CompareTo(Agent other)
+        {
+            if (other == null) return 1;
+            return string.Compare(Name, other.Name, StringComparison.Ordinal);
+        }
     }
+
+
     public class Program
     {
+        public static List<Agent> controllers, initiators, duelists, sentinels, allAgents;
         static void Main(string[] args)
         {
             Console.Write("Choose your language (EN/DE/FR): ");
@@ -34,11 +44,13 @@ namespace RandomValorantAgent
             language = language.ToUpper();
             Console.Clear();
 
-            List<Agent> controllers, initiators, duelists, sentinels, allAgents;
+
             LoadAgentsFromFile(out controllers, out initiators, out duelists, out sentinels, out allAgents);
 
             while (true)
             {
+                SortLists();
+
                 if (language == "EN")
                 {
                     OverlayEN();
@@ -150,6 +162,38 @@ namespace RandomValorantAgent
                             }
                         }
                         Console.WriteLine();
+                    }
+                    else if (userinp == "4")
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Please provide role and agent name");
+                        Console.WriteLine("Roles: [C]ontroller, [I]nitiator, [D]uelist, [S]entinel");
+
+                        string userRole = Console.ReadLine();
+                        userRole = userRole.ToLower();
+
+                        string userName = Console.ReadLine();
+
+                        if (userRole == "controller" || userRole == "c")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Controller, userName, language);
+                        }
+                        else if (userRole == "initiator" || userRole == "i")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Initiator, userName, language);
+                        }
+                        else if (userRole == "duelist" || userRole == "d")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Duelist, userName, language);
+                        }
+                        else if (userRole == "sentinel" || userRole == "s")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Sentinel, userName, language);
+                        }
                     }
                 }
                 else if (language == "DE")
@@ -264,6 +308,38 @@ namespace RandomValorantAgent
                         }
                         Console.WriteLine();
                     }
+                    else if (userinp == "4")
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Bitte gebe die Rolle und Namen des Agenten an");
+                        Console.WriteLine("Rollen: [C]ontroller, [I]nitiator, [D]uelist, [S]entinel");
+
+                        string userRole = Console.ReadLine();
+                        userRole = userRole.ToLower();
+
+                        string userName = Console.ReadLine();
+
+                        if (userRole == "controller" || userRole == "c")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Controller, userName, language);
+                        }
+                        else if (userRole == "initiator" || userRole == "i")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Initiator, userName, language);
+                        }
+                        else if (userRole == "duelist" || userRole == "d")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Duelist, userName, language);
+                        }
+                        else if (userRole == "sentinel" || userRole == "s")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Sentinel, userName, language);
+                        }
+                    }
                 }
                 else if (language == "FR")
                 {
@@ -377,11 +453,115 @@ namespace RandomValorantAgent
                         }
                         Console.WriteLine();
                     }
+                    else if (userinp == "4")
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Veuillez fournir le rôle et le nom de l'agent");
+                        Console.WriteLine("Les rôles: [C]ontroller, [I]nitiator, [D]uelist, [S]entinel");
+
+                        string userRole = Console.ReadLine();
+                        userRole = userRole.ToLower();
+
+                        string userName = Console.ReadLine();
+
+                        if (userRole == "controller" || userRole == "c")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Controller, userName, language);
+                        }
+                        else if (userRole == "initiator" || userRole == "i")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Initiator, userName, language);
+                        }
+                        else if (userRole == "duelist" || userRole == "d")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Duelist, userName, language);
+                        }
+                        else if (userRole == "sentinel" || userRole == "s")
+                        {
+                            Console.WriteLine();
+                            AddNewAgent(Rollen.Sentinel, userName, language);
+                        }
+                    }
                 }
                 Console.ReadLine();
                 Console.Clear();
             }
         }
+
+        private static void SortLists()
+        {
+            controllers.Sort();
+            initiators.Sort();
+            duelists.Sort();
+            sentinels.Sort();
+            allAgents.Sort();
+        }
+
+        public static void AddNewAgent(Rollen rolle, string name, string language)
+        {
+            try
+            {
+                string filePath = "Agents.txt";
+
+                using (StreamWriter sw = File.AppendText(filePath))
+                {
+                    sw.WriteLine($"{rolle} {name}");
+                }
+
+                if (language == "EN")
+                {
+                    Console.WriteLine("Agent successfully added and written to the file.");
+                }
+                else if (language == "DE")
+                {
+                    Console.WriteLine("Agent erfolgreich hinzugefügt und in die Datei geschrieben.");
+                }
+                else if (language == "FR")
+                {
+                    Console.WriteLine("Agent ajouté avec succès et écrit dans le fichier.");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (language == "EN")
+                {
+                    Console.WriteLine($"Error adding agent: {ex.Message}");
+                }
+                else if (language == "DE")
+                {
+                    Console.WriteLine($"Fehler beim Hinzufügen des Agenten: {ex.Message}");
+                }
+                else if (language == "FR")
+                {
+                    Console.WriteLine($"Erreur lors de l'ajout de l'agent: {ex.Message}");
+                }
+            }
+
+            if(rolle == Rollen.Sentinel)
+            {
+                sentinels.Add(new Agent(rolle, name));
+                allAgents.Add(new Agent(rolle, name));
+            }
+            else if(rolle == Rollen.Controller)
+            {
+                controllers.Add(new Agent(rolle, name));
+                allAgents.Add(new Agent(rolle, name));
+            }
+            else if (rolle == Rollen.Duelist)
+            {
+                duelists.Add(new Agent(rolle, name));
+                allAgents.Add(new Agent(rolle, name));
+            }
+            else if (rolle == Rollen.Initiator)
+            {
+                initiators.Add(new Agent(rolle, name));
+                allAgents.Add(new Agent(rolle, name));
+            }
+        }
+
 
         private static void LoadAgentsFromFile(out List<Agent> controllers, out List<Agent> initiators,
             out List<Agent> duelists, out List<Agent> sentinels, out List<Agent> allAgents)
@@ -451,9 +631,10 @@ namespace RandomValorantAgent
             Console.WriteLine("Choose random Agent by role\t [1]");
             Console.WriteLine("Full Random Agent\t\t [2]");
             Console.WriteLine("Show all Agents \t\t [3]");
+            Console.WriteLine("Add new Agent \t\t\t [4]");
             Console.WriteLine("--------------------------------------------");
             Console.Write("Please select one \t\t [_]");
-            Console.SetCursorPosition(34, 7);
+            Console.SetCursorPosition(34, 8);
         }
         private static void OverlayDE()
         {
@@ -463,9 +644,10 @@ namespace RandomValorantAgent
             Console.WriteLine("Random Agent nach Rolle auswählen\t [1]");
             Console.WriteLine("Full Random Agent auswählen\t\t [2]");
             Console.WriteLine("Alle Agents anzeigen \t\t\t [3]");
+            Console.WriteLine("Neuen Agenten hinzufügen \t [4]");
             Console.WriteLine("--------------------------------------------");
             Console.Write("Deine Auswahl \t\t\t\t [_]");
-            Console.SetCursorPosition(42, 7);
+            Console.SetCursorPosition(42, 8);
         }
         private static void OverlayFR()
         {
@@ -475,9 +657,10 @@ namespace RandomValorantAgent
             Console.WriteLine("Choisissez un agent aléatoire par rôle\t [1]");
             Console.WriteLine("Agent aléatoire complet\t\t\t [2]");
             Console.WriteLine("Afficher tous les agents \t\t [3]");
+            Console.WriteLine("Ajouter un nouvel agent \t\t [4]");
             Console.WriteLine("--------------------------------------------");
             Console.Write("S'il vous plait sélectionner en un \t [_]");
-            Console.SetCursorPosition(42, 7);
+            Console.SetCursorPosition(42, 8);
         }
     }
 

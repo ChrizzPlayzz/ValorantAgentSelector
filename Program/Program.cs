@@ -83,7 +83,7 @@ namespace RandomValorantAgent
                             Random r = new Random();
 
                             Console.WriteLine();
-                            Console.WriteLine("Your random " + duelists[r.Next(0, duelists.Count)].Rolle + "  is: " + duelists[r.Next(0, duelists.Count)].Name);
+                            Console.WriteLine("Your random " + duelists[r.Next(0, duelists.Count)].Rolle + " is: " + duelists[r.Next(0, duelists.Count)].Name);
                         }
                         else if (userinput == "sentinel" || userinput == "s")
                         {
@@ -228,7 +228,7 @@ namespace RandomValorantAgent
                             Random r = new Random();
 
                             Console.WriteLine();
-                            Console.WriteLine("Dein zufälliger " + duelists[r.Next(0, duelists.Count)].Rolle + "  ist: " + duelists[r.Next(0, duelists.Count)].Name);
+                            Console.WriteLine("Dein zufälliger " + duelists[r.Next(0, duelists.Count)].Rolle + " ist: " + duelists[r.Next(0, duelists.Count)].Name);
                         }
                         else if (userinput == "sentinel" || userinput == "s")
                         {
@@ -644,7 +644,7 @@ namespace RandomValorantAgent
             Console.WriteLine("Random Agent nach Rolle auswählen\t [1]");
             Console.WriteLine("Full Random Agent auswählen\t\t [2]");
             Console.WriteLine("Alle Agents anzeigen \t\t\t [3]");
-            Console.WriteLine("Neuen Agenten hinzufügen \t [4]");
+            Console.WriteLine("Neuen Agenten hinzufügen \t\t [4]");
             Console.WriteLine("--------------------------------------------");
             Console.Write("Deine Auswahl \t\t\t\t [_]");
             Console.SetCursorPosition(42, 8);

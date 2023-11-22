@@ -1,7 +1,0 @@
-C:\Users\Qrizz\Desktop\ValorantAgentSelector\ValorantAgentSelector\bin\Debug\ValorantAgentSelector.exe.config
-C:\Users\Qrizz\Desktop\ValorantAgentSelector\ValorantAgentSelector\bin\Debug\ValorantAgentSelector.exe
-C:\Users\Qrizz\Desktop\ValorantAgentSelector\ValorantAgentSelector\bin\Debug\ValorantAgentSelector.pdb
-C:\Users\Qrizz\Desktop\ValorantAgentSelector\ValorantAgentSelector\obj\Debug\ValorantAgentSelector.csproj.AssemblyReference.cache
-C:\Users\Qrizz\Desktop\ValorantAgentSelector\ValorantAgentSelector\obj\Debug\ValorantAgentSelector.csproj.CoreCompileInputs.cache
-C:\Users\Qrizz\Desktop\ValorantAgentSelector\ValorantAgentSelector\obj\Debug\ValorantAgentSelector.exe
-C:\Users\Qrizz\Desktop\ValorantAgentSelector\ValorantAgentSelector\obj\Debug\ValorantAgentSelector.pdb

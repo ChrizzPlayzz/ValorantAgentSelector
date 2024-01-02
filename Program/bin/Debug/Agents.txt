@@ -11,7 +11,6 @@ Initiator KAY/O
 Initiator Skye
 Initiator Sova
 
-Duelist Iso
 Duelist Jett
 Duelist Neon
 Duelist Phoenix

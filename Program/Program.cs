@@ -101,6 +101,8 @@ namespace RandomValorantAgent
                     }
                     else if (userinp == "3")
                     {
+                        LoadAgentsFromFile(out controllers, out initiators, out duelists, out sentinels, out allAgents);
+
                         Console.WriteLine();
 
                         Console.Write("Controllers: \t");
@@ -195,6 +197,15 @@ namespace RandomValorantAgent
                             AddNewAgent(Rollen.Sentinel, userName, language);
                         }
                     }
+                    else if (userinp == "5")
+                    {
+                        Console.WriteLine("\nPlease provide agent name\n");
+
+                        string userAgent = Console.ReadLine();
+                        Console.WriteLine();
+
+                        DeleteAgent(userAgent, language);
+                    }
                 }
                 else if (language == "DE")
                 {
@@ -246,6 +257,8 @@ namespace RandomValorantAgent
                     }
                     else if (userinp == "3")
                     {
+                        LoadAgentsFromFile(out controllers, out initiators, out duelists, out sentinels, out allAgents);
+
                         Console.WriteLine();
 
                         Console.Write("Controllers: \t");
@@ -340,6 +353,15 @@ namespace RandomValorantAgent
                             AddNewAgent(Rollen.Sentinel, userName, language);
                         }
                     }
+                    else if (userinp == "5")
+                    {
+                        Console.WriteLine("\nBitte gebe den Namen des Agenten an\n");
+
+                        string userAgent = Console.ReadLine();
+                        Console.WriteLine();
+
+                        DeleteAgent(userAgent, language);
+                    }
                 }
                 else if (language == "FR")
                 {
@@ -391,6 +413,8 @@ namespace RandomValorantAgent
                     }
                     else if (userinp == "3")
                     {
+                        LoadAgentsFromFile(out controllers, out initiators, out duelists, out sentinels, out allAgents);
+
                         Console.WriteLine();
 
                         Console.Write("Controllers: \t");
@@ -485,6 +509,15 @@ namespace RandomValorantAgent
                             AddNewAgent(Rollen.Sentinel, userName, language);
                         }
                     }
+                    else if (userinp == "5")
+                    {
+                        Console.WriteLine("\nVeuillez fournir le nom de l'agent\n");
+
+                        string userAgent = Console.ReadLine();
+                        Console.WriteLine();
+
+                        DeleteAgent(userAgent, language);
+                    }
                 }
                 Console.ReadLine();
                 Console.Clear();
@@ -561,6 +594,46 @@ namespace RandomValorantAgent
                 allAgents.Add(new Agent(rolle, name));
             }
         }
+        public static void DeleteAgent(string agentName, string language)
+        {
+            try
+            {
+                List<string> tempListt = File.ReadAllLines("Agents.txt").ToList();
+
+                foreach (var agentt in tempListt)
+                {
+                    if (agentt.Contains(agentName))
+                    {
+                        tempListt.Remove(agentt);
+                        break;
+                    }
+                }
+
+                File.WriteAllLines("Agents.txt", tempListt);
+
+                if (language == "EN")
+                {
+                    Console.WriteLine("Agent succesfully deleted");
+                }
+                else if (language == "FR")
+                {
+                    Console.WriteLine("Agent supprimé avec succès");
+                }
+                else if (language == "DE")
+                {
+                    Console.WriteLine("Agent erfolgreich gelöscht");
+                }
+                else 
+                {
+                    Console.WriteLine("EROR");
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("ERROR");
+                Console.WriteLine(ex);
+            }
+        }
 
 
         private static void LoadAgentsFromFile(out List<Agent> controllers, out List<Agent> initiators,
@@ -632,9 +705,10 @@ namespace RandomValorantAgent
             Console.WriteLine("Full Random Agent\t\t [2]");
             Console.WriteLine("Show all Agents \t\t [3]");
             Console.WriteLine("Add new Agent \t\t\t [4]");
+            Console.WriteLine("Delete Agent \t\t\t [5]");
             Console.WriteLine("--------------------------------------------");
             Console.Write("Please select one \t\t [_]");
-            Console.SetCursorPosition(34, 8);
+            Console.SetCursorPosition(34, 9);
         }
         private static void OverlayDE()
         {
@@ -645,9 +719,10 @@ namespace RandomValorantAgent
             Console.WriteLine("Full Random Agent auswählen\t\t [2]");
             Console.WriteLine("Alle Agents anzeigen \t\t\t [3]");
             Console.WriteLine("Neuen Agenten hinzufügen \t\t [4]");
+            Console.WriteLine("Agenten löschen \t\t\t [5]");
             Console.WriteLine("--------------------------------------------");
             Console.Write("Deine Auswahl \t\t\t\t [_]");
-            Console.SetCursorPosition(42, 8);
+            Console.SetCursorPosition(42, 9);
         }
         private static void OverlayFR()
         {
@@ -658,9 +733,10 @@ namespace RandomValorantAgent
             Console.WriteLine("Agent aléatoire complet\t\t\t [2]");
             Console.WriteLine("Afficher tous les agents \t\t [3]");
             Console.WriteLine("Ajouter un nouvel agent \t\t [4]");
+            Console.WriteLine("Supprimer agent \t\t\t [5]");
             Console.WriteLine("--------------------------------------------");
             Console.Write("S'il vous plait sélectionner en un \t [_]");
-            Console.SetCursorPosition(42, 8);
+            Console.SetCursorPosition(42, 9);
         }
     }
 
